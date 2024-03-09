@@ -181,7 +181,7 @@ class NewJokeContainer extends StatelessWidget {
             onSubmitted: (a) => _addJoke(),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         ElevatedButton(
           onPressed: _addJoke,
           child: const Text("Добавить"),
@@ -221,7 +221,7 @@ class HomePage extends StatelessWidget {
               const Title(),
               const SizedBox(height: 50),
               JokeContainer(jokes: _jokes),
-              const SizedBox(height: 50),
+              const SizedBox(height: 100),
               NewJokeContainer(jokes: _jokes),
             ],
           ),
