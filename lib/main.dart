@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -38,36 +39,45 @@ class MyApp extends StatelessWidget {
 }
 
 class Joke {
-  Joke({required this.text});
+  Joke({required this.text, this.image});
 
   final String text;
+  final String? image;
 }
 
 class Jokes {
   final List<Joke> _jokes = [
     Joke(
       text: "Лучше быть последним — первым, чем первым — последним.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk1.jpg",
     ),
     Joke(
       text: "На случай, если буду нужен, то я там же, где и был, когда был не нужен.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk3.jpg",
     ),
     Joke(
       text: "Если волк молчит то лучше его не перебивай.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk4.jpg",
     ),
     Joke(
       text: "Каждый в цирке думает, что знает в цирке, но не каждый, что в цирке знает, что в цирке не каждый знает думает.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk5.jpg",
     ),
     Joke(
       text: "Легко вставать, когда ты не ложился.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk6.jpg",
     ),
     Joke(
       text: "За двумя зайцами погонишься — рыбку из пруда не выловишь, делу время, а отмеришь семь раз…",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk8.jpg",
     ),
     Joke(
       text: "Кем бы ты ни был, кем бы ты не стал, помни, где ты был и кем ты стал.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk14.jpg",
     ),
     Joke(
       text: "Бесплатный сыр бывает только бесплатным.",
+      image: "https://cdn.petooh.site/wolk/statusas-auf-volk17.jpg",
     ),
   ];
 
@@ -136,6 +146,10 @@ class _JokeContainerState extends State<JokeContainer> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        currentJoke?.image != null
+            ? CachedNetworkImage(imageUrl: currentJoke!.image!, height: 256)
+            : const SizedBox.shrink(),
+        const SizedBox(height: 30),
         SizedBox(
           width: 512,
           child: Text(currentJoke?.text ?? '',
